@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Weather App</title>
+    <link rel="stylesheet" href="assets/styles/style.css" />
+    <script defer type="module" src="assets/scripts/app.js"></script>
+  </head>
+  <body>
+    <div class="loading-screen">
+      <img
+        class="loader-icon active"
+        src="assets/images/animated/clear-day.svg"
+      />
+      <img
+        class="loader-icon"
+        src="assets/images/animated/thunderstorms-rain.svg"
+      />
+      <img class="loader-icon" src="assets/images/animated/falling-stars.svg" />
+      <img class="loader-icon" src="assets/images/animated/wind.svg" />
+
+      <img class="loader-icon" src="assets/images/animated/snow.svg" />
+    </div>
+    <div class="background"></div>
+
+    <div class="app">
+      <!-- TOP BAR -->
+      <div class="top-bar">
+        <div class="city-display">📍 <span class="city"></span></div>
+
+        <div class="search">
+          <input
+            class="search-input"
+            type="text"
+            placeholder="Search city..."
+          />
+          <button class="search-btn">Search</button>
+        </div>
+      </div>
+
+      <!-- LEFT -->
+      <div class="left">
+        <h1 class="temp">16°</h1>
+        <p class="status">Storm with Rain</p>
+
+        <div class="details">
+          <p class="wind-speed">Wind: 2.4 km/h</p>
+          <p class="humidity">Humidity: 70%</p>
+        </div>
+      </div>
+
+      <!-- CENTER -->
+      <div class="center">
+        <img
+          class="main-icon"
+          src="assets/images/animated/clear-day.svg"
+          alt="weather"
+        />
+      </div>
+
+      <!-- RIGHT -->
+      <div class="right">
+        <!-- <div class="day active">
+          <p>Friday</p>
+          <p>16°</p>
+        </div>
+
+        <div class="day">
+          <p>Saturday</p>
+          <p>22°</p>
+        </div>
+
+        <div class="day">
+          <p>Sunday</p>
+          <p>21°</p>
+        </div> -->
+      </div>
+
+      <!-- BOTTOM FORECAST -->
+      <div class="bottom">
+        <!-- <div>06:00</div>
+        <div>08:00</div>
+        <div>10:00</div>
+        <div>12:00</div>
+        <div>14:00</div>
+        <div>16:00</div> -->
+      </div>
+    </div>
+  </body>
+</html>
