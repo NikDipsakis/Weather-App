@@ -79,7 +79,7 @@ function startAnimationLoader() {
     index = (index + 1) % loaderIcons.length;
 
     loaderIcons[index].classList.add("active");
-  }, 1200);
+  }, 1300);
 }
 
 function stopAnimationLoader() {

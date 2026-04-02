@@ -16,7 +16,7 @@ function getTimeOfDay(userTime, sunrise, sunset) {
 
   if (hour >= sunrise && hour <= sunrise + SUNRISE_WINDOW) return "sunrise";
   if (hour > sunrise + SUNRISE_WINDOW && hour < sunset - SUNSET_WINDOW) return "day";
-  if (hour >= sunset - SUNSET_WINDOW && hour <= sunset + SUNSET_WINDOW) return "sunset";
+  if (hour >= sunset - SUNSET_WINDOW && hour <= sunset + (SUNSET_WINDOW / 2)) return "sunset";
   return "night";
 }
 
