@@ -1,3 +1,86 @@
+/**
+ * Weather configuration module
+ * Contains icon mappings, weather descriptions, and UI background styles
+ */
+
+// Static imports ensure Parcel includes all icons in the production build
+// Icons are separated by time of day for accurate UI representation
+// DAY icons
+import clearDay from "../images/animated/clear-day.svg";
+import partlyCloudyDay from "../images/animated/partly-cloudy-day.svg";
+import overcastDay from "../images/animated/overcast-day.svg";
+import cloudy from "../images/animated/cloudy.svg";
+import fogDay from "../images/animated/fog-day.svg";
+import fog from "../images/animated/fog.svg";
+import partlyCloudyDayDrizzle from "../images/animated/partly-cloudy-day-drizzle.svg";
+import drizzle from "../images/animated/drizzle.svg";
+import partlyCloudyDayRain from "../images/animated/partly-cloudy-day-rain.svg";
+import rain from "../images/animated/rain.svg";
+import hail from "../images/animated/hail.svg";
+import snow from "../images/animated/snow.svg"; 
+import thunderstorms from "../images/animated/thunderstorms.svg";
+import thunderstormsDayRain from "../images/animated/thunderstorms-day-rain.svg";
+import thunderstormsRain from "../images/animated/thunderstorms-rain.svg";
+
+// NIGHT icons
+import clearNight from "../images/animated/clear-night.svg";
+import partlyCloudyNight from "../images/animated/partly-cloudy-night.svg";
+import overcastNight from "../images/animated/overcast-night.svg";
+import fogNight from "../images/animated/fog-night.svg";
+import partlyCloudyNightDrizzle from "../images/animated/partly-cloudy-night-drizzle.svg";
+import partlyCloudyNightRain from "../images/animated/partly-cloudy-night-rain.svg";
+import thunderstormsNightRain from "../images/animated/thunderstorms-night-rain.svg";
+
+
+// Maps weather codes to corresponding icons for day and night
+// Using Object.freeze to prevent accidental mutations
+const ICON_MAP = Object.freeze({
+    day: {
+        0: clearDay,
+        1: partlyCloudyDay,
+        2: overcastDay,
+        3: cloudy,
+        45: fogDay,
+        48: fog,
+        51: partlyCloudyDayDrizzle,
+        53: partlyCloudyDayDrizzle,
+        55: drizzle,
+        61: partlyCloudyDayRain,
+        63: rain,
+        65: rain,
+        71: hail,
+        73: snow,
+        75: snow,
+        80: rain,
+        95: thunderstorms,
+        96: thunderstormsDayRain,
+        99: thunderstormsRain,
+    },
+
+    night: {
+        0: clearNight,
+        1: partlyCloudyNight,
+        2: overcastNight,
+        3: cloudy,
+        45: fogNight,
+        48: fog,
+        51: partlyCloudyNightDrizzle,
+        53: partlyCloudyNightDrizzle,
+        55: drizzle,
+        61: partlyCloudyNightRain,
+        63: rain,
+        65: rain,
+        71: hail,
+        73: snow,
+        75: snow,
+        80: rain,
+        95: thunderstorms,
+        96: thunderstormsNightRain,
+        99: thunderstormsRain,
+    },
+});
+
+// Maps weather codes to human-readable descriptions
 const WEATHER_MAP = Object.freeze({
     0: "Clear Sky",
     1: "Mainly clear",
@@ -20,51 +103,7 @@ const WEATHER_MAP = Object.freeze({
     99: "Thunderstorm heavy hail",
 });
 
-const ICON_MAP = Object.freeze({
-    day: {
-        0: "clear-day.svg",
-        1: "partly-cloudy-day.svg",
-        2: "overcast-day.svg",
-        3: "cloudy.svg",
-        45: "fog-day.svg",
-        48: "fog.svg",
-        51: "partly-cloudy-day-drizzle.svg",
-        53: "partly-cloudy-day-drizzle.svg",
-        55: "drizzle.svg",
-        61: "partly-cloudy-day-rain.svg",
-        63: "rain.svg",
-        65: "rain.svg",
-        71: "hail.svg",
-        73: "snow.svg",
-        75: "snow.svg",
-        80: "rain.svg",
-        95: "thunderstorms.svg",
-        96: "thunderstorms-day-rain.svg",
-        99: "thunderstorms-rain.svg",
-    },
-    night: {
-        0: "clear-night.svg",
-        1: "partly-cloudy-night.svg",
-        2: "overcast-night.svg",
-        3: "cloudy.svg",
-        45: "fog-night.svg",
-        48: "fog.svg",
-        51: "partly-cloudy-night-drizzle.svg",
-        53: "partly-cloudy-night-drizzle.svg",
-        55: "drizzle.svg",
-        61: "partly-cloudy-night-rain.svg",
-        63: "rain.svg",
-        65: "rain.svg",
-        71: "hail.svg",
-        73: "snow.svg",
-        75: "snow.svg",
-        80: "rain.svg",
-        95: "thunderstorms.svg",
-        96: "thunderstorms-night-rain.svg",
-        99: "thunderstorms-rain.svg",
-    },
-});
-
+// Defines background gradients based on weather condition and time of day
 const WEATHER_GRADIENTS = Object.freeze({
     Clear: {
         sunrise: "linear-gradient(135deg, #ff9a9e, #ffcfa2)",
@@ -98,4 +137,4 @@ const WEATHER_GRADIENTS = Object.freeze({
     },
 });
 
-export { WEATHER_MAP, ICON_MAP, WEATHER_GRADIENTS};
+export { WEATHER_MAP, ICON_MAP, WEATHER_GRADIENTS };

@@ -1,6 +1,16 @@
+/**
+ * Main application controller
+ * Handles:
+ * - User interactions (search, input)
+ * - Initial app loading
+ * - Loader animation
+ * - Connecting API layer with UI rendering
+ */
+
 import { getUserPosition, getWeatherByCoords, getWeatherData } from "./api.js";
 import { renderWeather } from "./ui.js";
 
+// DOM elements
 const loadingScreen = document.querySelector(".loading-screen");
 const backgroundEl = document.querySelector(".background");
 const cityEl = document.querySelector(".city");
@@ -15,6 +25,7 @@ const bottomEl = document.querySelector(".bottom");
 const rightEl = document.querySelector(".right");
 const loaderIcons = document.querySelectorAll(".loader-icon");
 
+// Group UI elements for easier passing between modules
 const elements = {
   backgroundEl,
   tempEl,
@@ -28,6 +39,7 @@ const elements = {
 
 let loaderInterval;
 
+// Handles user search input and updates UI with fetched weather data
 async function searchCity() {
   startAnimationLoader();
   try {
@@ -35,6 +47,7 @@ async function searchCity() {
 
     if (!city.trim()) throw new Error("Please enter a city");
 
+    // Format city name for display (capitalize each word)
     const formattedCity = city
       .toLowerCase()
       .split(" ")
@@ -51,14 +64,17 @@ async function searchCity() {
     searchInput.value = "";
   } catch (error) {
     console.error(error);
+
+    // Fallback UI state when search fails
     cityEl.textContent = "City not found";
-    searchInput.value = ""; // καθαρίζει input
-    searchInput.focus(); // 🔥 ξαναγράφει κατευθείαν
+    searchInput.value = "";
+    searchInput.focus();
   } finally {
     stopAnimationLoader();
   }
 }
 
+// Starts animated loader by cycling through icons
 function startAnimationLoader() {
   loadingScreen.classList.remove("hidden");
 
@@ -66,7 +82,7 @@ function startAnimationLoader() {
 
   let index = 0;
 
-  // καθαρίζουμε προηγούμενο interval (important)
+  // Clear any existing interval (prevents duplicates)
   if (loaderInterval) clearInterval(loaderInterval);
 
   // reset icons
@@ -82,29 +98,29 @@ function startAnimationLoader() {
   }, 1300);
 }
 
+// Stops loader animation and hides loading screen
 function stopAnimationLoader() {
-
   if (loaderInterval) {
     clearInterval(loaderInterval);
     loaderInterval = null;
   }
+  // Small delay for smoother UI transition
   setTimeout(() => {
     loadingScreen.classList.add("hidden");
   }, 200);
 }
 
-async function init() {
+// Initializes app with user's location or fallback city
+async function initApp() {
   try {
-    // setloading(true);
-
     const { lat, lng } = await getUserPosition();
     const weather = await getWeatherByCoords(lat, lng);
 
     renderWeather(weather, elements);
     cityEl.textContent = `Your Location`;
 
-    // setloading(false);
   } catch (error) {
+    // Fallback if geolocation fails (Chosen "london" but up to you)
     const weather = await getWeatherData("London");
     renderWeather(weather, elements);
     cityEl.textContent = "London";
@@ -113,14 +129,28 @@ async function init() {
 }
 
 
-startAnimationLoader();
+async function init() {
+  // Fallback if geolocation fails
+  startAnimationLoader();
+  //init App
+  await initApp();
+ 
+  // stopAnimationLoader();
+  // Safety fallback to stop loader after delay
+  // Giving extra time on the first loading screen to see animation clearly
+  // For regural execution of loading screen ---> stopAnimationLoader();
+  setTimeout(() => {
+    stopAnimationLoader();
+  }, 3000);
+}
 
-await init();
 
-setTimeout(() => {
-  stopAnimationLoader();
-}, 3000);
+init();
 
+
+
+
+// Event listeners (Using enter key besides click to Search)
 searchBtn.addEventListener("click", searchCity);
 searchInput.addEventListener("keydown", (e) => {
   if (e.key === "Enter") searchCity();
