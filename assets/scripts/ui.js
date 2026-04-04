@@ -158,7 +158,7 @@ function renderWeather(data, elements) {
   elements.windEl.textContent = `Wind: ${weatherWind} km/h`;
   elements.humidityEl.textContent = `Humidity: ${humidity}%`;
   elements.iconImg.src = icon;
-  // console.log(data);
+  console.log('Your Location:', data);
 }
 
 export { renderWeather };
